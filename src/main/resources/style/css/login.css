@@ -1,0 +1,222 @@
+.login {
+    -fx-background-color: #3b3737;
+    -fx-border-radius: 50px 50px 10px 10px;
+    -fx-background-radius: 30px 30px 0px 0px;
+}
+
+.login1 {
+    -fx-background-color: #d3cfcf;
+    -fx-background-radius: 30px 30px 0 0;
+}
+
+.loginText {
+    -fx-font-size: 32px;
+    -fx-text-fill: #130e0f;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(22, 21, 21, 0.3), 2, 0, 0, 4);
+}
+
+.loginText2 {
+    -fx-font-size: 12px;
+    -fx-text-fill: #130e0f;
+    -fx-font-weight: bold;
+    -fx-font-family: "Roboto", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(22, 21, 21, 0.2), 1, 0, 0, 3);
+    -fx-opacity: 0.9;
+}
+
+.labelText {
+    -fx-font-size: 14px;
+    -fx-text-fill: #fdfdfd;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 5px 10px;
+    -fx-effect: dropshadow(gaussian, rgba(168, 161, 161, 0.3), 3, 0.2, 2, 2);
+}
+
+.loginButton {
+    -fx-background-color: linear-gradient(#828093, #615d7b);
+    -fx-background-radius: 30px;
+    -fx-border-radius: 30px;
+    -fx-border-color: #4b3b73;
+    -fx-border-width: 2px;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-family: "Verdana", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 8px 20px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 4);
+}
+
+.loginButton:hover {
+    -fx-background-color: linear-gradient(#7b68ee, #6a5acd);
+    -fx-border-color: #5a4a9e;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 4);
+}
+
+.textFieldLog {
+    -fx-background-color: #d3d3d3;
+    -fx-background-radius: 5px;
+    -fx-border-color: #b0b0b0;
+    -fx-border-radius: 5px;
+    -fx-padding: 5px;
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+.textFieldLog:hover {
+    -fx-background-color: #c0c0c0;
+    -fx-border-color: #a0a0a0;
+}
+
+.textFieldLog:focused {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #5a9bd5;
+    -fx-border-width: 2px;
+}
+
+.dash1 {
+    -fx-background-color: #9766e5;
+    -fx-background-radius: 20px 20px 20px 20px;
+}
+
+.dash2 {
+    -fx-background-color: #9766e5;
+    -fx-background-radius: 20px 20px 20px 20px;
+}
+
+.dashLabel {
+    -fx-font-size: 25px;
+    -fx-text-fill: #262424;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(22, 21, 21, 0.2), 1, 0, 0, 4);
+}
+
+.title {
+    -fx-font-size: 18px;
+    -fx-text-fill: #262424;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-effect: dropshadow(gaussian, rgba(22, 21, 21, 0.2), 1, 0, 0, 2);
+}
+
+.box {
+    -fx-background-color: linear-gradient(from 0% 0% to 0% 100%, #eeeded, #ffff);
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(91, 87, 87, 0.3), 5, 0, 0, 5);
+}
+
+.menuButton {
+    -fx-background-color: linear-gradient(#7a4bcd, #5e3a99);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 5);
+}
+
+.menuButton:hover {
+    -fx-background-color: linear-gradient(#8f5ce5, #6f4b99);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 8);
+}
+
+.menuButton:pressed {
+    -fx-background-color: linear-gradient(#5a3c78, #463061);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 5, 0, 0, 5);
+}
+
+.logButton {
+    -fx-background-color: linear-gradient(#cd4b5e, #993a48);
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0, 0, 5);
+}
+
+.logButton:hover {
+    -fx-background-color: linear-gradient(#e55c6a, #994b53);
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 8);
+}
+
+/* Common Button Styles */
+.buttonCr {
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI", sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-padding: 6px 20px;
+    -fx-background-radius: 10px;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 4, 0, 2, 2);
+}
+
+/* Save Button */
+.saveButton {
+    -fx-background-color: linear-gradient(#4caf50, #388e3c); /* Green gradient */
+    -fx-border-color: #2e7d32;
+    -fx-border-width: 2px;
+}
+
+.saveButton:hover {
+    -fx-background-color: linear-gradient(#66bb6a, #43a047); /* Brighter green on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+}
+
+/* Delete Button */
+.deleteButton {
+    -fx-background-color: linear-gradient(#e53935, #c62828); /* Red gradient */
+    -fx-border-color: #b71c1c;
+    -fx-border-width: 2px;
+}
+
+.deleteButton:hover {
+    -fx-background-color: linear-gradient(#ef5350, #d32f2f); /* Brighter red on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+}
+
+/* Update Button */
+.updateButton {
+    -fx-background-color: linear-gradient(#ff9800, #f57c00); /* Orange gradient */
+    -fx-border-color: #e65100;
+    -fx-border-width: 2px;
+}
+
+.updateButton:hover {
+    -fx-background-color: linear-gradient(#ffa726, #fb8c00); /* Brighter orange on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+}
+
+/* View Button */
+.viewButton {
+    -fx-background-color: linear-gradient(#42a5f5, #1e88e5); /* Blue gradient */
+    -fx-border-color: #1565c0;
+    -fx-border-width: 2px;
+}
+
+.viewButton:hover {
+    -fx-background-color: linear-gradient(#64b5f6, #2196f3); /* Brighter blue on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+}
+
+
+.addButton {
+    -fx-background-color: linear-gradient(#5c5d5e, #a1a6ad); /* Blue gradient */
+    -fx-border-color: #bdc2c8;
+    -fx-border-width: 2px;
+}
+
+.addButton:hover {
+    -fx-background-color: linear-gradient(#9ea6ad, #5b5f63); /* Brighter blue on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 6, 0, 2, 2);
+}

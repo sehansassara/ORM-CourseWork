@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Point3D?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="login1" prefHeight="551.0" prefWidth="329.0" styleClass="login1" stylesheets="@../style/css/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.LoginFormController">
+   <children>
+      <AnchorPane layoutX="-1.0" layoutY="164.0" prefHeight="388.0" prefWidth="330.0" styleClass="login" stylesheets="@../style/css/login.css">
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <rotationAxis>
+            <Point3D x="10.0" y="10.0" z="10.0" />
+         </rotationAxis>
+         <children>
+            <TextField fx:id="txtUserName" layoutX="65.0" layoutY="143.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter User Name" styleClass="textFieldLog" stylesheets="@../style/css/login.css" />
+            <TextField fx:id="txtPassword" layoutX="66.0" layoutY="206.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter Password" styleClass="textFieldLog" stylesheets="@../style/css/login.css" />
+            <ComboBox fx:id="cmbSelectRolle" layoutX="66.0" layoutY="67.0" onAction="#cmbSelectRolleOnAction" prefHeight="33.0" prefWidth="206.0" promptText="Select Rolle" />
+            <Label layoutX="57.0" layoutY="116.0" styleClass="labelText" stylesheets="@../style/css/login.css" text="User Name" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <Label layoutX="57.0" layoutY="182.0" styleClass="labelText" stylesheets="@../style/css/login.css" text="Password" textFill="WHITE">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
+            <JFXButton buttonType="RAISED" layoutX="65.0" layoutY="274.0" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="206.0" styleClass="loginButton" stylesheets="@../style/css/login.css" text="Login" textFill="WHITE" />
+            <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="323.0" onAction="#btnSignInOnAction" prefHeight="26.0" prefWidth="206.0" styleClass="loginButton" stylesheets="@../style/css/login.css" text="SignIn" textFill="WHITE" />
+         </children>
+      </AnchorPane>
+      <Label layoutX="118.0" layoutY="44.0" prefHeight="74.0" prefWidth="94.0" styleClass="loginText" stylesheets="@../style/css/login.css" text="Login">
+         <font>
+            <Font name="Segoe UI Black" size="31.0" />
+         </font>
+      </Label>
+      <ImageView layoutX="139.0" layoutY="7.0">
+         <image>
+            <Image url="@../style/image/icons8-student-52.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="62.0" layoutY="109.0" styleClass="loginText2" stylesheets="@../style/css/login.css" text="This is  student management system">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

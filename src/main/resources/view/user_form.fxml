@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorUser" prefHeight="648.0" prefWidth="958.0" styleClass="dash2" stylesheets="@../style/css/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.UserFormController">
+   <children>
+      <Label layoutX="33.0" layoutY="17.0" prefHeight="38.0" prefWidth="221.0" styleClass="dashLabel" stylesheets="@../style/css/login.css" text="User Management">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtUserId" layoutX="74.0" layoutY="159.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserName" layoutX="74.0" layoutY="227.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserEmail" layoutX="74.0" layoutY="295.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserTel" layoutX="74.0" layoutY="364.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserPassword" layoutX="74.0" layoutY="432.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <Label layoutX="74.0" layoutY="134.0" text="User ID">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="74.0" layoutY="206.0" text="User Name">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="74.0" layoutY="274.0" text="User Email">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="341.0" text="User Tel">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="76.0" layoutY="410.0" text="User Password">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="221.0" layoutY="567.0" onAction="#btnSaveOnAction" text="Save">
+         <styleClass>
+            <String fx:value="buttonCr" />
+            <String fx:value="saveButton" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="129.0" layoutY="567.0" onAction="#btnUpdateOnAction" text="Change">
+         <styleClass>
+            <String fx:value="buttonCr" />
+            <String fx:value="updateButton" />
+         </styleClass>
+      </JFXButton>
+      <JFXButton layoutX="41.0" layoutY="568.0" onAction="#btnDeleteOnAction" text="Delete">
+         <styleClass>
+            <String fx:value="buttonCr" />
+            <String fx:value="deleteButton" />
+         </styleClass>
+      </JFXButton>
+      <TableView fx:id="tblUser" layoutX="313.0" layoutY="108.0" onMouseClicked="#tblUserOnMouse" prefHeight="490.0" prefWidth="622.0">
+        <columns>
+          <TableColumn fx:id="colUserId" prefWidth="100.79998779296875" text="User_ID" />
+          <TableColumn fx:id="colUserName" prefWidth="114.4000244140625" text="User_Name" />
+            <TableColumn fx:id="colUserEmail" prefWidth="136.0" text="User_Email" />
+            <TableColumn fx:id="colUserTel" minWidth="0.0" prefWidth="128.800048828125" text="User_Tel" />
+            <TableColumn fx:id="colUserRole" prefWidth="140.79998779296875" text="User_Role" />
+        </columns>
+      </TableView>
+      <Label layoutX="76.0" layoutY="477.0" text="User Role">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXComboBox fx:id="cmbUserRole" layoutX="74.0" layoutY="495.0" onAction="#cmbUserRoleOnAction" prefHeight="31.0" prefWidth="203.0" />
+   </children>
+</AnchorPane>

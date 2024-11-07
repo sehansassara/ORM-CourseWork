@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="680.0" prefWidth="1230.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.DashBoardController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="648.0" prefWidth="234.0" styleClass="dash1" stylesheets="@../style/css/login.css">
+         <children>
+            <Label layoutX="24.0" layoutY="15.0" prefHeight="38.0" prefWidth="186.0" styleClass="title" stylesheets="@../style/css/login.css" text="Student Management">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <JFXButton layoutX="12.0" layoutY="220.0" onAction="#btnDashBoardOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Dash Board" />
+            <JFXButton layoutX="12.0" layoutY="272.0" onAction="#btnStudentOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Student" />
+            <JFXButton layoutX="12.0" layoutY="324.0" onAction="#btnPaymentOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Payment" />
+            <JFXButton layoutX="12.0" layoutY="375.0" onAction="#btnProgramOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Program" />
+            <JFXButton layoutX="12.0" layoutY="426.0" onAction="#btnUserOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="User" />
+            <JFXButton layoutX="12.0" layoutY="587.0" onAction="#btnLogOutOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="logButton" text="Log Out" />
+            <ImageView fitHeight="139.0" fitWidth="138.0" layoutX="48.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/image/icons8-management-96.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorDash1" layoutX="258.0" layoutY="16.0" prefHeight="648.0" prefWidth="958.0" styleClass="dash2" stylesheets="@../style/css/login.css">
+         <children>
+            <Label layoutX="33.0" layoutY="17.0" prefHeight="38.0" prefWidth="138.0" styleClass="dashLabel" stylesheets="@../style/css/login.css" text="Dash Board">
+               <font>
+                  <Font size="19.0" />
+               </font>
+            </Label>
+            <Pane layoutX="116.0" layoutY="88.0" prefHeight="123.0" prefWidth="200.0" styleClass="box">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/image/icons8-student-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="37.0" layoutY="82.0" prefHeight="27.0" prefWidth="127.0" text="Student Count">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblStudentCount" layoutX="124.0" layoutY="14.0" prefHeight="62.0" prefWidth="53.0" text="01">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="367.0" layoutY="88.0" prefHeight="123.0" prefWidth="200.0" styleClass="box">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="24.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/image/icons8-student-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="37.0" layoutY="82.0" prefHeight="27.0" prefWidth="127.0" text="Student Count">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="124.0" layoutY="14.0" prefHeight="62.0" prefWidth="53.0" text="01">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="621.0" layoutY="88.0" prefHeight="123.0" prefWidth="200.0" styleClass="box" stylesheets="@../style/css/login.css">
+               <children>
+                  <ImageView fitHeight="62.0" fitWidth="62.0" layoutX="23.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../style/image/icons8-student-96.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="36.0" layoutY="82.0" prefHeight="27.0" prefWidth="127.0" text="Student Count">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="123.0" layoutY="14.0" prefHeight="62.0" prefWidth="53.0" text="01">
+                     <font>
+                        <Font name="System Bold" size="42.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
