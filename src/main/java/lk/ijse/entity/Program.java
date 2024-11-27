@@ -30,4 +30,8 @@ public class Program {
         this.duration = duration;
         this.fee = fee;
     }
+
+    public Program(String s) {
+        this.programName = s;
+    }
 }

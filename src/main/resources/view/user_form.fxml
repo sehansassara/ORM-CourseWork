@@ -18,9 +18,9 @@
          </font>
       </Label>
       <TextField fx:id="txtUserId" layoutX="74.0" layoutY="159.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtUserName" layoutX="74.0" layoutY="227.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtUserEmail" layoutX="74.0" layoutY="295.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtUserTel" layoutX="74.0" layoutY="364.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserName" layoutX="74.0" layoutY="227.0" onKeyReleased="#txtUserNameOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserEmail" layoutX="74.0" layoutY="295.0" onKeyReleased="#txtUserEmailOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserTel" layoutX="74.0" layoutY="364.0" onKeyReleased="#txtUserTelOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
       <TextField fx:id="txtUserPassword" layoutX="74.0" layoutY="432.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
       <Label layoutX="74.0" layoutY="134.0" text="User ID">
          <font>

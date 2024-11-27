@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="anchorRegister" prefHeight="648.0" prefWidth="958.0" styleClass="dash2" stylesheets="@../style/css/login.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.PaymentFormController">
+   <children>
+      <Label layoutX="33.0" layoutY="17.0" prefHeight="38.0" prefWidth="251.0" styleClass="dashLabel" stylesheets="@../style/css/login.css" text="Payment Form">
+         <font>
+            <Font size="19.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtStudentId" layoutX="110.0" layoutY="159.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <Label layoutX="110.0" layoutY="134.0" text="Student ID">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="730.0" layoutY="324.0" onAction="#btnPayOnAction" prefHeight="31.0" prefWidth="126.0" text="Pay">
+         <styleClass>
+            <String fx:value="buttonCr" />
+            <String fx:value="saveButton" />
+         </styleClass>
+      </JFXButton>
+      <TableView fx:id="tblPayment" layoutX="98.0" layoutY="382.0" onMouseClicked="#tblUserOnMouse" prefHeight="238.0" prefWidth="758.0">
+         <columns>
+            <TableColumn fx:id="colStuId" prefWidth="150.39999389648438" text="Student_ID" />
+            <TableColumn fx:id="colAmount" prefWidth="170.40003967285156" text="Amount" />
+            <TableColumn fx:id="colPayAmount" minWidth="0.0" prefWidth="141.5999755859375" text="Pay Amount" />
+            <TableColumn fx:id="colUpfrontPay" prefWidth="143.20001220703125" text="Upfront Amount" />
+            <TableColumn fx:id="colPayId" prefWidth="152.00006103515625" text="Pay_ID" />
+         </columns>
+      </TableView>
+      <Label layoutX="657.0" layoutY="20.0" text="Date :">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblDate" layoutX="739.0" layoutY="22.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="19.0" />
+         </font>
+      </Label>
+      <Label layoutX="660.0" layoutY="65.0" text="Pay ID :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblPayId" layoutX="739.0" layoutY="62.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblupfrontPay" layoutX="605.0" layoutY="216.0" prefHeight="34.0" prefWidth="118.0" styleClass="lblupfront" textFill="#d1123f">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtAmount" layoutX="376.0" layoutY="159.0" onKeyReleased="#txtAmountOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <Label layoutX="376.0" layoutY="134.0" text="Amount">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtPayAmount" layoutX="640.0" layoutY="163.0" onKeyReleased="#txtPayAmountOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <Label layoutX="640.0" layoutY="138.0" text="Pay Amount">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="471.0" layoutY="225.0" text="Upfront Of Payment : ">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="594.0" layoutY="324.0" onAction="#btnPaymentEditOnAction" prefHeight="31.0" prefWidth="126.0" text="Update">
+         <styleClass>
+            <String fx:value="buttonCr" />
+            <String fx:value="updateButton" />
+         </styleClass>
+      </JFXButton>
+   </children>
+</AnchorPane>

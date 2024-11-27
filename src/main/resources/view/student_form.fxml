@@ -16,11 +16,11 @@
             <Font size="19.0" />
          </font>
       </Label>
-      <TextField fx:id="txtStudentId" layoutX="74.0" layoutY="159.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtStudentName" layoutX="74.0" layoutY="297.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtStudentEmail" layoutX="74.0" layoutY="365.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtStudentTel" layoutX="74.0" layoutY="434.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
-      <TextField fx:id="txtStudentAddress" layoutX="74.0" layoutY="502.0" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtStudentId" layoutX="74.0" layoutY="159.0" onAction="#txtSearchOnAction" onKeyReleased="#txtStIdOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtStudentName" layoutX="74.0" layoutY="297.0" onKeyReleased="#txtStNaOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtStudentEmail" layoutX="74.0" layoutY="365.0" onKeyReleased="#txtStEmOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtStudentTel" layoutX="74.0" layoutY="434.0" onKeyReleased="#txtStTeOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtStudentAddress" layoutX="74.0" layoutY="502.0" onKeyReleased="#txtStAddOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
       <Label layoutX="74.0" layoutY="134.0" text="Student ID">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -64,7 +64,7 @@
             <String fx:value="deleteButton" />
          </styleClass>
       </JFXButton>
-      <TableView fx:id="tblStudent" layoutX="313.0" layoutY="322.0" onMouseClicked="#tblStudentOnMouse" prefHeight="277.0" prefWidth="622.0">
+      <TableView fx:id="tblStudent" layoutX="313.0" layoutY="108.0" onMouseClicked="#tblStudentOnMouse" prefHeight="492.0" prefWidth="622.0">
          <columns>
             <TableColumn fx:id="colStudentId" prefWidth="71.2000732421875" text="Student_Id" />
             <TableColumn fx:id="colStudentName" prefWidth="92.79998779296875" text="Student_Name" />
@@ -74,22 +74,11 @@
             <TableColumn fx:id="colAddress" prefWidth="114.39993896484373" text="Address" />
          </columns>
       </TableView>
-      <TextField fx:id="txtUserId" layoutX="74.0" layoutY="230.0" onAction="#txtSearchOnAction" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
+      <TextField fx:id="txtUserId" layoutX="74.0" layoutY="230.0" onAction="#txtSearchOnAction" onKeyReleased="#txtUIdOnKeyReleased" prefHeight="30.0" prefWidth="203.0" styleClass="textFieldLog" />
       <Label layoutX="74.0" layoutY="205.0" text="User ID">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <TableView fx:id="tblStudent1" layoutX="292.0" layoutY="36.0" onMouseClicked="#tblStudentOnMouse" prefHeight="277.0" prefWidth="622.0">
-         <columns>
-            <TableColumn fx:id="colStudentId1" prefWidth="71.2000732421875" text="Student_Id" />
-            <TableColumn fx:id="colStudentName1" prefWidth="92.79998779296875" text="Student_Name" />
-            <TableColumn fx:id="colStudentEmail1" prefWidth="129.59991455078125" text="Student_Email" />
-            <TableColumn fx:id="colStudentTel1" minWidth="0.0" prefWidth="100.0" text="Student_Tel" />
-            <TableColumn fx:id="colAdmin1" prefWidth="63.199951171875" text="Admin" />
-            <TableColumn fx:id="colAddress1" prefWidth="76.800048828125" text="Address" />
-            <TableColumn fx:id="colPrograms" prefWidth="84.7999267578125" text="courses" />
-         </columns>
-      </TableView>
    </children>
 </AnchorPane>

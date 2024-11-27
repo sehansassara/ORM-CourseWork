@@ -5,9 +5,11 @@ import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.ProgramDAO;
 import lk.ijse.dao.custom.StudentDAO;
 import lk.ijse.dto.ProgramDTO;
+import lk.ijse.dto.RegistrationDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.entity.Program;
 import lk.ijse.entity.Student;
+import lk.ijse.entity.User;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -71,32 +73,42 @@ public class StudentBOImpl implements StudentBo {
         return new StudentDTO(student.getId(),student.getUser(),student.getName(),student.getEmail(),student.getPhoneNumber(),student.getAddress());
     }
 
-   /* @Override
-    public List<StudentDTO> getStudentsWithCourses() {
-            // Call the repository method to fetch the result from the database
-            List<Object[]> result = studentDAO.getStudentsWithCoursesNative();
+    @Override
+    public List<StudentDTO> getStudentsRegisteredForAllCulinaryPrograms() {
+        List<StudentDTO> studentDTOS = new ArrayList<>();
+        List<Student> students;
 
-            // Create an empty list to hold the mapped StudentDTOs
-            List<StudentDTO> studentDTOList = new ArrayList<>();
+        try {
+            students = studentDAO.getStudentsRegisteredForAllCulinaryPrograms();
 
-            // Process each row in the result and map it to a StudentDTO
-            for (Object[] row : result) {
-                // Map the result to individual fields
-                String studentId = (String) row[0];       // student ID
-                String studentName = (String) row[1];     // student name
-                String studentEmail = (String) row[2];    // student email
-                String studentPhone = (String) row[3];    // student phone number
-                String studentAddress = (String) row[4];  // student address
-                String courseName = (String) row[5];      // course name (program name)
+            // Debugging output
+            System.out.println("Number of DTOs to convert: " + students.size());
 
-                // Create a new StudentDTO object and populate it
-                StudentDTO studentDTO = new StudentDTO(studentId, studentName, studentEmail, studentPhone, studentAddress, courseName);
-
-                // Add the created DTO to the list
-                studentDTOList.add(studentDTO);
+            for (Student student : students) {
+                studentDTOS.add(new StudentDTO(student.getId(), student.getName(), student.getEmail(),
+                        student.getPhoneNumber(), student.getAddress(), student.getUser()));
             }
+        } catch (IOException e) {
+            throw new RuntimeException("Error retrieving students registered for all culinary programs", e);
+        }
 
-            // Return the list of StudentDTOs
-            return studentDTOList;
-        }*/
+        return studentDTOS;
+    }
+
+    @Override
+    public Student getStudentById(String stuId) {
+        Student student = studentDAO.getStudentById(stuId);
+
+        return new Student(
+                student.getId(),
+                student.getUser(),
+                student.getName(),
+                student.getEmail(),
+                student.getPhoneNumber(),
+                student.getAddress()
+        );
+    }
+
+
+
 }

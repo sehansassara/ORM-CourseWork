@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
+@AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class StudentTm {
@@ -15,6 +15,8 @@ public class StudentTm {
     private String phoneNumber;
     private String address;
     private String user;
+    private String couId;
+    private String date;
 
     public StudentTm(String id, String user, String name, String email, String phoneNumber, String address) {
         this.id = id;
@@ -25,14 +27,15 @@ public class StudentTm {
         this.user = user;
     }
 
-    public StudentTm(String id, String s, String name, String phoneNumber, String email, String address, String enrolledCourses) {
+    public StudentTm(String id, String userId, String name, String phoneNumber, String email, String address, String proId) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.user = s;
-        this.courses = enrolledCourses;
-
+        this.user = userId;
+        this.couId = proId;
     }
+
+
 }

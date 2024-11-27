@@ -1,6 +1,8 @@
 package lk.ijse.tm;
 
 import com.jfoenix.controls.JFXButton;
+import lk.ijse.entity.Program;
+import lk.ijse.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,6 +18,7 @@ public class RegistrationTm {
     private String stuId;
     private String couId;
     private double fee;
-    private JFXButton remove;
 
+    public RegistrationTm(String id, String date, Student studentId, Program programId, double paymentAmount) {
+    }
 }

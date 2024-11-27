@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom.impl;
 
 import lk.ijse.bo.custom.RegistrationBo;
+import lk.ijse.comfit.FactoryConfiguration;
 import lk.ijse.dao.DAOFactory;
 import lk.ijse.dao.custom.RegistrationDAO;
 import lk.ijse.dao.custom.StudentDAO;
@@ -10,9 +11,12 @@ import lk.ijse.entity.Program;
 import lk.ijse.entity.Registration;
 import lk.ijse.entity.Student;
 import lk.ijse.entity.User;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class RegistrationBOImpl implements RegistrationBo {
@@ -62,18 +66,35 @@ public class RegistrationBOImpl implements RegistrationBo {
                 program.getId(),
                 program.getProgramName(),
                 program.getDuration(),
-                program.getFee()
+                program.getFee(),
+                program.getRegistrations()
         );
     }
 
-    @Override
+  @Override
     public boolean saveregisterdStudent(RegistrationDTO registrationDTO) throws SQLException, IOException, ClassNotFoundException {
         return registrationDAO.save(new Registration(registrationDTO.getId(), registrationDTO.getStudentId(), registrationDTO.getProgramId(),registrationDTO.getDate(),registrationDTO.getPaymentAmount()));
     }
+
 
     @Override
     public StudentDTO searchByStudentId(String id) throws IOException {
         Student student = studentDAO.searchById(id);
         return new StudentDTO(student.getId(),student.getUser(),student.getName(),student.getEmail(),student.getPhoneNumber(),student.getAddress());
+    }
+
+    @Override
+    public List<RegistrationDTO> getAllStudentCourse() {
+        List<RegistrationDTO> registrationDTOS = new ArrayList<>();
+        List<Registration> registrations = null;
+        try {
+            registrations = studentDAO.getAllStudentWithCourse();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        for (Registration registration : registrations) {
+            registrationDTOS.add(new RegistrationDTO(registration.getId(),registration.getProgram(),registration.getStudent(), registration.getRegistrationDate(),registration.getPaymentAmount()));
+        }
+        return registrationDTOS;
     }
 }

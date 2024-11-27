@@ -1,16 +1,21 @@
 package lk.ijse.dao.custom.impl;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Query;
 import lk.ijse.comfit.FactoryConfiguration;
 import lk.ijse.dao.custom.StudentDAO;
+import lk.ijse.dto.RegistrationDTO;
 import lk.ijse.entity.Program;
+import lk.ijse.entity.Registration;
 import lk.ijse.entity.Student;
+import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.NativeQuery;
+import org.hibernate.query.Query;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -105,20 +110,81 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return (Student) student;
     }
-   /* private EntityManager entityManager;
+
 
     @Override
-    public List<Object[]> getStudentsWithCoursesNative() {
-        // Define the native query to fetch students along with their enrolled courses
-        String query = "SELECT s.id, s.name, s.email, s.phone_number, s.address, p.name AS course_name " +
-                "FROM student s " +
-                "JOIN registration r ON s.id = r.student_id " +
-                "JOIN program p ON r.program_id = p.id";
+    public List<Student> getStudentsRegisteredForAllCulinaryPrograms() throws IOException {
+        List<Student> students = new ArrayList<>();
+        Session session = null;
+        Transaction transaction = null;
 
-        // Execute the native query and return the results as a list of Object[]
-        Query nativeQuery = entityManager.createNativeQuery(query);
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
 
-        // Return the result of the query execution
-        return nativeQuery.getResultList();
-    }*/
+            /*String hql = "SELECT s FROM Student s JOIN s.registrations r JOIN r.program p " +
+                    "WHERE p.programName IN ('Professional Cooking', 'Baking & Pastry Arts', 'International Cuisine', 'Culinary Management') " +
+                    "GROUP BY s HAVING COUNT(DISTINCT p.id) = 2";
+
+            Query<Student> query = session.createQuery(hql, Student.class);*/
+            String hql = "SELECT s.* " +
+                    "FROM Student s " +
+                    "JOIN Registration r ON s.id = r.student_id " +
+                    "JOIN Program p ON r.program_id = p.id " +
+                    "WHERE p.programName IN ('Professional Cooking', 'Baking & Pastry Arts', 'International Cuisine', 'Culinary Management') " +
+                    "GROUP BY s.id " +
+                    "HAVING COUNT(DISTINCT p.id) = 2";
+
+            Query<Student> query = session.createNativeQuery(hql, Student.class);
+            students = query.getResultList();
+            // Debugging output
+            System.out.println("Number of students retrieved: " + students.size());
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            throw new IOException("Error retrieving students registered for all culinary programs", e);
+        } finally {
+            if (session != null) session.close(); // Close session to prevent memory leaks
+        }
+
+        return students;
+    }
+
+    @Override
+    public Student getStudentById(String stuId) {
+        Transaction transaction = null;
+        Student student = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            Query<Student> query = session.createQuery("FROM Student u WHERE u.id = :id", Student.class);
+            query.setParameter("id", stuId);
+            student = query.uniqueResult();
+
+            transaction.commit();
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback();
+            e.printStackTrace();
+        }
+
+        return student;
+    }
+
+    @Override
+    public List<Registration> getAllStudentWithCourse() throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        List<Registration> registrations = session.createQuery("from Registration").list();
+        for (Registration registration : registrations) {
+            System.out.println("Registration ID: " + registration.getId() + ", Student: " + registration.getStudent().getName() + ", Program: " + registration.getProgram().getProgramName());
+        }
+        transaction.commit();
+        session.close();
+        return registrations;
+    }
+
+
 }

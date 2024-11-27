@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane fx:id="anchorAll" prefHeight="680.0" prefWidth="1230.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.MainFormController">
+   <children>
+      <AnchorPane layoutX="14.0" layoutY="16.0" prefHeight="648.0" prefWidth="234.0" styleClass="dash1" stylesheets="@../style/css/login.css">
+         <children>
+            <JFXButton fx:id="btnDash" layoutX="12.0" layoutY="220.0" onAction="#btnDashBoardOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Dash Board" />
+            <JFXButton fx:id="btnStu" layoutX="12.0" layoutY="272.0" onAction="#btnStudentOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Student" />
+            <JFXButton fx:id="btnPay" layoutX="12.0" layoutY="324.0" onAction="#btnPaymentOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Payment" />
+            <JFXButton fx:id="btnPro" layoutX="12.0" layoutY="375.0" onAction="#btnProgramOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Program" />
+            <JFXButton fx:id="btnUser" layoutX="10.0" layoutY="478.0" onAction="#btnUserOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="User" />
+            <JFXButton layoutX="12.0" layoutY="587.0" onAction="#btnLogOutOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="logButton" text="Log Out" />
+            <ImageView fitHeight="139.0" fitWidth="138.0" layoutX="48.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../style/image/icons8-management-96.png" />
+               </image>
+            </ImageView>
+            <JFXButton fx:id="btnReg" layoutX="11.0" layoutY="426.0" onAction="#btnRegistrationOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Registration" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="anchorMain" layoutX="258.0" layoutY="16.0" prefHeight="648.0" prefWidth="958.0" styleClass="dash2" stylesheets="@../style/css/login.css" />
+   </children>
+</AnchorPane>

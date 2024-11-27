@@ -1,5 +1,6 @@
 package lk.ijse.dto;
 
+import lk.ijse.entity.Registration;
 import lk.ijse.entity.User;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,6 +18,7 @@ public class StudentDTO {
     private String phoneNumber;
     private String address;
     private User user;
+    private Registration registration;
 
     public StudentDTO(String id, User user, String name, String email, String phoneNumber, String address) {
         this.id = id;
@@ -36,7 +38,7 @@ public class StudentDTO {
         this.user = user;
     }
 
-    public StudentDTO(String studentId, String studentName, String studentEmail, String studentPhone, String studentAddress, String courseName) {
+/*    public StudentDTO(String studentId, String studentName, String studentEmail, String studentPhone, String studentAddress, String courseName) {
         this.id = studentId;
         this.name = studentName;
         this.email = studentEmail;
@@ -44,5 +46,5 @@ public class StudentDTO {
         this.address = studentAddress;
         this.user = new User(studentId, studentName, studentEmail, studentPhone, studentAddress, courseName);
         this.enrolledCourses = courseName;
-    }
+    }*/
 }

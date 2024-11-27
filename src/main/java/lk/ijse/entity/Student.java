@@ -23,6 +23,10 @@ public class Student {
     @JoinColumn(name = "user_id")
     private User user;
 
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Payment> payments;
+
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Registration> registrations;
 
@@ -33,5 +37,9 @@ public class Student {
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.user = user;
+    }
+
+    public Student(String s) {
+        this.id = s;
     }
 }

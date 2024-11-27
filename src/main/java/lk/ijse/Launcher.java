@@ -28,7 +28,7 @@ public class Launcher extends Application {
         session.close();
 
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/dashBoard_form.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_form.fxml"));
         Scene scene = new Scene(loader.load());
 
         stage.setScene(scene);

@@ -1,6 +1,7 @@
 package lk.ijse.bo.custom;
 
 import lk.ijse.bo.SuperBO;
+import lk.ijse.dto.RegistrationDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.entity.Student;
 
@@ -20,6 +21,12 @@ public interface StudentBo extends SuperBO {
     boolean deleteStudent(StudentDTO student) throws SQLException, IOException, ClassNotFoundException;
 
     StudentDTO searchByStudentId(String id) throws IOException;
+
+    List<StudentDTO> getStudentsRegisteredForAllCulinaryPrograms() throws IOException;
+
+    Student getStudentById(String stuId);
+
+
 
     /*List<StudentDTO> getStudentsWithCourses();*/
 }

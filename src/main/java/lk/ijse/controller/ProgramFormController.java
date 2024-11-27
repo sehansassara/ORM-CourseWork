@@ -9,10 +9,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.ProgramBo;
+import lk.ijse.controller.util.Regex;
 import lk.ijse.dto.ProgramDTO;
 import lk.ijse.tm.ProgramTm;
 
@@ -220,4 +222,19 @@ public class ProgramFormController {
         }
     }
 
+
+    @FXML
+    void txtProDuOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtDuration);
+    }
+
+    @FXML
+    void txtProFeeOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.PRICE,txtFee);
+    }
+
+    @FXML
+    void txtProNaOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtProgramName);
+    }
 }

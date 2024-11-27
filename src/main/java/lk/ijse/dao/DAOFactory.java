@@ -1,9 +1,6 @@
 package lk.ijse.dao;
 
-import lk.ijse.dao.custom.impl.ProgramDAOImpl;
-import lk.ijse.dao.custom.impl.RegistrationDAOImpl;
-import lk.ijse.dao.custom.impl.StudentDAOImpl;
-import lk.ijse.dao.custom.impl.UserDAOImpl;
+import lk.ijse.dao.custom.impl.*;
 import lk.ijse.entity.Registration;
 
 public class DAOFactory {
@@ -16,7 +13,7 @@ public class DAOFactory {
     }
 
     public enum DAOTypes{
-        USER,PROGRAM,STUDENT,REGISTRATION
+        USER,PROGRAM,STUDENT,REGISTRATION,PAYMENTS
     }
 
     public SuperDAO getDAO(DAOTypes types) {
@@ -29,6 +26,8 @@ public class DAOFactory {
                 return new StudentDAOImpl();
                 case REGISTRATION:
                     return new RegistrationDAOImpl();
+                    case PAYMENTS:
+                        return new PaymentDAOImpl();
             default:
                 return null;
         }

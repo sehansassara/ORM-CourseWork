@@ -23,20 +23,18 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Label>
-      <JFXButton layoutX="786.0" layoutY="586.0" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="126.0" text="Register">
+      <JFXButton layoutX="787.0" layoutY="259.0" onAction="#btnSaveOnAction" prefHeight="31.0" prefWidth="126.0" text="Register">
          <styleClass>
             <String fx:value="buttonCr" />
             <String fx:value="saveButton" />
          </styleClass>
       </JFXButton>
-      <TableView fx:id="tblCart" layoutX="91.0" layoutY="300.0" onMouseClicked="#tblUserOnMouse" prefHeight="238.0" prefWidth="776.0">
+      <TableView fx:id="tblCart" layoutX="91.0" layoutY="340.0" onMouseClicked="#tblUserOnMouse" prefHeight="238.0" prefWidth="758.0">
          <columns>
-            <TableColumn fx:id="colRegId" prefWidth="100.79998779296875" text="Register_ID" />
-            <TableColumn fx:id="colStuId" prefWidth="114.4000244140625" text="Student_ID" />
-            <TableColumn fx:id="colProId" prefWidth="156.79998779296875" text="Program_ID" />
-            <TableColumn fx:id="colFee" minWidth="0.0" prefWidth="154.4000244140625" text="Program_Fee" />
-            <TableColumn fx:id="colDate" prefWidth="129.5999755859375" text="Date" />
-            <TableColumn fx:id="colRemove" prefWidth="119.2000732421875" text="Remove" />
+            <TableColumn fx:id="colStuId" prefWidth="150.39999389648438" text="Student_ID" />
+            <TableColumn fx:id="colName" prefWidth="170.40003967285156" text="Name" />
+            <TableColumn fx:id="colAddress" minWidth="0.0" prefWidth="223.20001220703125" text="Address" />
+            <TableColumn fx:id="colEmail" prefWidth="213.5999755859375" text="Email" />
          </columns>
       </TableView>
       <Label layoutX="379.0" layoutY="143.0" text="Programs">
@@ -105,26 +103,21 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="56.0" layoutY="592.0" text="Total Amount :">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Label>
-      <Label fx:id="lblTotalAmount" layoutX="165.0" layoutY="583.0" prefHeight="38.0" prefWidth="110.0" text="Label" textFill="#d4f402">
-         <font>
-            <Font name="System Bold" size="20.0" />
-         </font>
-      </Label>
-      <JFXButton layoutX="786.0" layoutY="252.0" onAction="#btnAddOnAction" prefHeight="31.0" prefWidth="126.0" text="Add">
-         <styleClass>
-            <String fx:value="addButton" />
-            <String fx:value="buttonCr" />
-         </styleClass>
-      </JFXButton>
-      <JFXButton layoutX="661.0" layoutY="587.0" onAction="#btnViewOnAction" prefHeight="31.0" prefWidth="110.0" text="View">
+      <JFXButton layoutX="661.0" layoutY="593.0" onAction="#btnViewOnAction" prefHeight="31.0" prefWidth="110.0" text="View">
          <styleClass>
             <String fx:value="buttonCr" />
             <String fx:value="viewButton" />
+         </styleClass>
+      </JFXButton>
+      <Label layoutX="104.0" layoutY="300.0" text="Student of Registerd The All Programs">
+         <font>
+            <Font name="System Bold" size="22.0" />
+         </font>
+      </Label>
+      <JFXButton layoutX="786.0" layoutY="593.0" onAction="#btnPaymentOnAction" prefHeight="31.0" prefWidth="126.0" text="Payment">
+         <styleClass>
+            <String fx:value="buttonCr" />
+            <String fx:value="addButton" />
          </styleClass>
       </JFXButton>
    </children>

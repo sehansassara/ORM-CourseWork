@@ -6,6 +6,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Cursor;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -14,17 +15,20 @@ import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.ProgramBo;
 import lk.ijse.bo.custom.RegistrationBo;
+import lk.ijse.bo.custom.StudentBo;
 import lk.ijse.dto.ProgramDTO;
 import lk.ijse.dto.RegistrationDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.entity.Program;
 import lk.ijse.entity.Student;
 import lk.ijse.tm.RegistrationTm;
+import lk.ijse.tm.StudentTm;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,19 +41,13 @@ public class RegistrationFormController {
     private JFXComboBox<String> cmbPrograms;
 
     @FXML
-    private TableColumn<?, ?> colDate;
+    private TableColumn<?, ?> colAddress;
 
     @FXML
-    private TableColumn<?, ?> colFee;
+    private TableColumn<?, ?> colEmail;
 
     @FXML
-    private TableColumn<?, ?> colProId;
-
-    @FXML
-    private TableColumn<?, ?> colRegId;
-
-    @FXML
-    private TableColumn<?, ?> colRemove;
+    private TableColumn<?, ?> colName;
 
     @FXML
     private TableColumn<?, ?> colStuId;
@@ -76,7 +74,7 @@ public class RegistrationFormController {
     private Label lblTotalAmount;
 
     @FXML
-    private TableView<RegistrationTm> tblCart;
+    private TableView<StudentTm> tblCart;
 
     @FXML
     private TextField txtStudentId;
@@ -86,6 +84,7 @@ public class RegistrationFormController {
 
     private ObservableList<RegistrationTm> obList = FXCollections.observableArrayList();
 
+    StudentBo studentBo = (StudentBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.STUDENT);
 
     ProgramBo programBo = (ProgramBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.PROGRAM);
     RegistrationBo registrationBo = (RegistrationBo) BOFactory.getBoFactory().getBO(BOFactory.BOTypes.REGISTRATION);
@@ -95,26 +94,49 @@ public class RegistrationFormController {
         generateRegId();
         setDate();
         getProgramsNames();
+        loadStudentsRegisteredForAllCulinaryPrograms();
         setCellValueFactory();
         clearfields();
     }
 
     private void clearfields() {
-        txtStudentId.setText("");
         lblProgramID.setText("");
-        lblStudentName.setText("");
-        lblTotalAmount.setText("");
         lblProgramFee.setText("");
         lblProgramDuration.setText("");
     }
 
+    private void loadStudentsRegisteredForAllCulinaryPrograms() throws IOException {
+        ObservableList<StudentTm> obList = FXCollections.observableArrayList();
+        List<StudentDTO> studentList = studentBo.getStudentsRegisteredForAllCulinaryPrograms();
+        System.out.println("Number of students retrieved: " + studentList.size());
+        for (StudentDTO studentDTO : studentList) {
+            String userId = studentDTO.getUser() != null ? studentDTO.getUser().getUser_id() : null;
+            String proId = null;
+            if (studentDTO.getRegistration() != null &&
+                    studentDTO.getRegistration().getProgram() != null &&
+                    !studentDTO.getRegistration().getProgram().getRegistrations().isEmpty()) {
+                proId = studentDTO.getRegistration().getProgram().getId(); // Get the first program ID
+            }
+            StudentTm studentTm = new StudentTm(
+                    studentDTO.getId(),
+                    userId,
+                    studentDTO.getName(),
+                    studentDTO.getPhoneNumber(),
+                    studentDTO.getEmail(),
+                    studentDTO.getAddress(),
+                    proId
+
+            );
+            obList.add(studentTm);
+        }
+        tblCart.setItems(obList);
+    }
+
     private void setCellValueFactory() {
-        colProId.setCellValueFactory(new PropertyValueFactory<>("couId"));
-        colRegId.setCellValueFactory(new PropertyValueFactory<>("regId"));
-        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
-        colFee.setCellValueFactory(new PropertyValueFactory<>("fee"));
-        colRemove.setCellValueFactory(new PropertyValueFactory<>("remove"));
-        colStuId.setCellValueFactory(new PropertyValueFactory<>("stuId"));
+        colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
+      colName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colStuId.setCellValueFactory(new PropertyValueFactory<>("id"));
+        colEmail.setCellValueFactory(new PropertyValueFactory<>("email"));
     }
 
     private void getProgramsNames() {
@@ -149,7 +171,7 @@ public class RegistrationFormController {
         return id;
     }
 
-    @FXML
+   /* @FXML
     void btnAddOnAction(ActionEvent event) {
         String regId = lblRegId.getText();
         String stuId = txtStudentId.getText();
@@ -183,9 +205,9 @@ public class RegistrationFormController {
 
         lblTotalAmount.setText(String.valueOf(calculateTotalFee()));
 
-    }
+    }*/
 
-    private double calculateTotalFee() {
+ /*   private double calculateTotalFee() {
         double total = 0.0;
 
         for (RegistrationTm registrationTm : obList) {
@@ -193,16 +215,16 @@ public class RegistrationFormController {
         }
 
         return total;
-    }
+    }*/
 
-    @FXML
+   @FXML
     void btnSaveOnAction(ActionEvent event) throws IOException {
         String regId = lblRegId.getText();
         String stuId = txtStudentId.getText();
         String proId = lblProgramID.getText();
-        double totalFee = calculateTotalFee();
+        /*double totalFee = calculateTotalFee();*/
         String regDate = lblDate.getText();
-        double amount = Double.parseDouble(lblTotalAmount.getText());
+        double amount = Double.parseDouble(lblProgramFee.getText());
 
 
         Student student = registrationBo.getStudentById(stuId);
@@ -212,9 +234,10 @@ public class RegistrationFormController {
 
         try {
             if (registrationBo.saveregisterdStudent(registrationDTO)) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Registration Successfully!").show();
+                new Alert(Alert.AlertType.CONFIRMATION, "Added Course for student!").show();
                 generateRegId();
                 clearfields();
+
             } else {
                 new Alert(Alert.AlertType.ERROR, "SQL Error").show();
             }
@@ -229,8 +252,29 @@ public class RegistrationFormController {
     }
 
     @FXML
-    void btnViewOnAction(ActionEvent event) {
+    void btnPaymentOnAction(ActionEvent event) {
+        String stuId = txtStudentId.getText();
+        openPaymentForm(stuId);
+    }
+    private void openPaymentForm(String stuid) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/payment_form.fxml"));
+            AnchorPane registrationForm = loader.load();
+            PaymentFormController paymentFormController = loader.getController();
+            paymentFormController.setRegistrationData(stuid);
+            anchorRegister.getChildren().clear();
+            anchorRegister.getChildren().add(registrationForm);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
+    @FXML
+    void btnViewOnAction(ActionEvent event) throws IOException {
+        AnchorPane dashboardPane = FXMLLoader.load(this.getClass().getResource("/view/studentDetail_form.fxml"));
+
+        anchorRegister.getChildren().clear();
+        anchorRegister.getChildren().add(dashboardPane);
     }
 
     @FXML

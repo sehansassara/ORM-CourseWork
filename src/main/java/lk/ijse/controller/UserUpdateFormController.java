@@ -70,7 +70,7 @@ public class UserUpdateFormController {
             if (isUpdated) {
                 if (userBo.update(userDto)) {
                     new Alert(Alert.AlertType.CONFIRMATION, "User updated successfully!").show();
-                    Parent root = FXMLLoader.load(getClass().getResource("/view/dashBoard_form.fxml"));
+                    Parent root = FXMLLoader.load(getClass().getResource("/view/main_form.fxml"));
                     Scene scene = new Scene(root);
                     Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                     stage.setScene(scene);

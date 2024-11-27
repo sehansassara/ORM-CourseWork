@@ -28,7 +28,9 @@ public class UserBOImpl implements UserBo {
     @Override
     public UserDTO getUserByName(String userName) {
         User user = userDAO.getUserByName(userName);
-
+        if (user == null) {
+            return null;
+        }
             return new UserDTO(
                     user.getUser_id(),
                     user.getUser_name(),

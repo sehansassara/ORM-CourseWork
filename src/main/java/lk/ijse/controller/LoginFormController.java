@@ -15,6 +15,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBo;
+import lk.ijse.controller.Alert.ErrorHandler;
+import lk.ijse.controller.exception.InvalidPasswordException;
+import lk.ijse.controller.exception.UserNotFoundException;
+import lk.ijse.controller.exception.ValidationException;
 import lk.ijse.dto.UserDTO;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -45,7 +49,7 @@ public class LoginFormController {
     }
 
 
-    @FXML
+  /*  @FXML
     void btnLoginOnAction(ActionEvent event) {
         try {
             String userName = txtUserName.getText();
@@ -79,7 +83,59 @@ public class LoginFormController {
             e.printStackTrace();
             new Alert(Alert.AlertType.ERROR, "An error occurred: " + e.getMessage()).show();
         }
+    }*/
+
+
+
+    @FXML
+    void btnLoginOnAction(ActionEvent event) {
+        try {
+            String userName = txtUserName.getText();
+            String password = txtPassword.getText();
+            String selectedRole = cmbSelectRolle.getValue();
+
+            if (userName.isEmpty() || password.isEmpty() || selectedRole == null) {
+                throw new ValidationException("Username, password, and role are required.");
+            }
+
+            UserDTO userDto = userBo.getUserByName(userName);
+            if (userDto == null) {
+                throw new UserNotFoundException("User not found.");
+            }
+
+            if (!BCrypt.checkpw(password, userDto.getPassword())) {
+                throw new InvalidPasswordException("Invalid password.");
+            }
+
+
+            SessionManager.setUserId(userDto.getUser_id());
+            new Alert(Alert.AlertType.CONFIRMATION, "Login successful!").show();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/main_form.fxml"));
+            Parent root = loader.load();
+            Scene scene = new Scene(root);
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.setTitle("Dashboard");
+
+            MainFormController controller = loader.getController();
+
+            if ("Admin".equals(selectedRole)) {
+                controller.enableAdminFeatures();
+            } else if ("Admissions Coordinator".equals(selectedRole)) {
+                controller.disableAdministratorButtons();
+            }
+            stage.show();
+        } catch (ValidationException | UserNotFoundException | InvalidPasswordException e) {
+            ErrorHandler.showError("Login Error", e.getMessage());
+        } catch (IOException e) {
+            ErrorHandler.showError("System Error", "An unexpected error occurred: " + e.getMessage());
+        }
     }
+
+
+
 
     @FXML
     void btnSignInOnAction(ActionEvent event) throws IOException {
@@ -93,7 +149,6 @@ public class LoginFormController {
 
     @FXML
     void cmbSelectRolleOnAction(ActionEvent event) {
-
     }
 
 }

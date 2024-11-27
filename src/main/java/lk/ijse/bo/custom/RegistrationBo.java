@@ -22,4 +22,6 @@ public interface RegistrationBo extends SuperBO {
     boolean saveregisterdStudent(RegistrationDTO registrationDTO) throws SQLException, IOException, ClassNotFoundException;
 
     StudentDTO searchByStudentId(String id) throws IOException;
+
+    List<RegistrationDTO> getAllStudentCourse();
 }

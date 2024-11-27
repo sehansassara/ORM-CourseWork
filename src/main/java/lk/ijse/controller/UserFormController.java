@@ -11,11 +11,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.UserBo;
+import lk.ijse.controller.Alert.ErrorHandler;
+import lk.ijse.controller.exception.ValidationException;
+import lk.ijse.controller.util.Regex;
 import lk.ijse.dto.UserDTO;
 import lk.ijse.tm.UserTm;
 import org.mindrot.jbcrypt.BCrypt;
@@ -159,7 +163,7 @@ public class UserFormController {
 
     }
 
-    @FXML
+   /* @FXML
     void btnSaveOnAction(ActionEvent event) throws SQLException, IOException, ClassNotFoundException {
         if (!isValidInput()) {
             new Alert(Alert.AlertType.WARNING, "Please fill out all fields correctly.").show();
@@ -184,7 +188,41 @@ public class UserFormController {
         } else {
             new Alert(Alert.AlertType.ERROR,"SQL Error").show();
         }
+    }*/
+
+    @FXML
+    void btnSaveOnAction(ActionEvent event) {
+        try {
+            if (!isValidInput()) {
+                throw new ValidationException("Please fill out all fields correctly.");
+            }
+
+            String id = txtUserId.getText();
+            String userName = txtUserName.getText();
+            String userEmail = txtUserEmail.getText();
+            String userTel = txtUserTel.getText();
+            String password = BCrypt.hashpw(txtUserPassword.getText(), BCrypt.gensalt());
+            String role = cmbUserRole.getValue();
+
+            UserDTO userDto = new UserDTO(id, userName, userEmail, userTel, password, role);
+            if (userBo.save(userDto)) {
+                new Alert(Alert.AlertType.CONFIRMATION, "User Added Successfully!").show();
+                generateNewId();
+                clearFields();
+                loadAllUser();
+            } else {
+                throw new SQLException("Failed to save user.");
+            }
+
+        } catch (ValidationException e) {
+            ErrorHandler.showError("Validation Error", e.getMessage());
+        } catch (SQLException | IOException e) {
+            ErrorHandler.showError("System Error", "An unexpected error occurred: " + e.getMessage());
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
+        }
     }
+
 
     @FXML
     void btnUpdateOnAction(ActionEvent event) throws IOException {
@@ -199,7 +237,6 @@ public class UserFormController {
 
     @FXML
     void cmbUserRoleOnAction(ActionEvent event) {
-
     }
 
 
@@ -278,5 +315,22 @@ public class UserFormController {
 
         return true;
     }
+
+
+    @FXML
+    void txtUserEmailOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.EMAIL,txtUserEmail);
+    }
+
+    @FXML
+    void txtUserNameOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtUserName);
+    }
+
+    @FXML
+    void txtUserTelOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.CONTACT,txtUserTel);
+    }
+
 
 }

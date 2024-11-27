@@ -10,13 +10,16 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import lk.ijse.bo.BOFactory;
 import lk.ijse.bo.custom.StudentBo;
 import lk.ijse.bo.custom.UserBo;
+import lk.ijse.controller.util.Regex;
 import lk.ijse.dto.ProgramDTO;
 import lk.ijse.dto.StudentDTO;
+import lk.ijse.dto.UserDTO;
 import lk.ijse.entity.Registration;
 import lk.ijse.entity.Student;
 import lk.ijse.entity.User;
@@ -75,7 +78,7 @@ public class StudentFormController {
     private TableView<StudentTm> tblStudent;
 
     @FXML
-    private TableView<?> tblStudent1;
+    private TableView<StudentTm> tblStudent1;
 
     @FXML
     private TextField txtStudentAddress;
@@ -103,36 +106,39 @@ public class StudentFormController {
         setCellValueFactory();
         generateNextStudentId();
         clearFields();
-        /*loadStudentsWithCourses();*/
+       /* loadStudentsRegisteredForAllCulinaryPrograms();*/
+
+        String userId = SessionManager.getUserId();
+
+        if (userId != null) {
+            txtUserId.setText(userId);
+        } else {
+            txtUserId.setText("No User ID available");
+        }
     }
 
-   /* private void loadStudentsWithCourses() {
+
+   /* private void loadStudentsRegisteredForAllCulinaryPrograms() throws IOException {
         ObservableList<StudentTm> obList = FXCollections.observableArrayList();
-        try {
-            List<StudentDTO> studentList = studentBo.getStudentsWithCourses();
-
-            for (StudentDTO studentDTO : studentList) {
-                // Assuming StudentTm has a field for enrolled programs/courses
-                String enrolledCourses = String.join(", ", studentDTO.getEnrolledCourses());
-
-                StudentTm studentTm = new StudentTm(
-                        studentDTO.getId(),
-                        studentDTO.getUser() != null ? studentDTO.getUser().getUser_id() : null,
-                        studentDTO.getName(),
-                        studentDTO.getPhoneNumber(),
-                        studentDTO.getEmail(),
-                        studentDTO.getAddress(),
-                        enrolledCourses
-                );
-                obList.add(studentTm);
-            }
-            tblStudent.setItems(obList);
-
-        } catch (Exception e) {
-            new Alert(Alert.AlertType.ERROR, "Error retrieving students with courses: " + e.getMessage()).show();
-            e.printStackTrace();
+        List<StudentDTO> studentList = studentBo.getStudentsRegisteredForAllCulinaryPrograms();
+        // Debugging output
+        System.out.println("Number of students retrieved: " + studentList.size());
+        for (StudentDTO studentDTO : studentList) {
+            String userId = studentDTO.getUser() != null ? studentDTO.getUser().getUser_id() : null;
+            StudentTm studentTm = new StudentTm(
+                    studentDTO.getId(),
+                    userId,
+                    studentDTO.getName(),
+                    studentDTO.getPhoneNumber(),
+                    studentDTO.getEmail(),
+                    studentDTO.getAddress()
+            );
+            obList.add(studentTm);
         }
+        tblStudent1.setItems(obList);
     }*/
+
+
 
     private void clearFields() {
         txtUserId.setText("");
@@ -155,16 +161,6 @@ public class StudentFormController {
         colStudentTel.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
         colAdmin.setCellValueFactory(new PropertyValueFactory<>("user"));
         colAddress.setCellValueFactory(new PropertyValueFactory<>("address"));
-
-
-
-      /*  colStudentId1.setCellValueFactory(new PropertyValueFactory<>("id"));
-        colStudentName1.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colStudentEmail1.setCellValueFactory(new PropertyValueFactory<>("email"));
-        colStudentTel1.setCellValueFactory(new PropertyValueFactory<>("phoneNumber"));
-        colAdmin1.setCellValueFactory(new PropertyValueFactory<>("user"));
-        colAddress1.setCellValueFactory(new PropertyValueFactory<>("address"));
-        colPrograms.setCellValueFactory(new PropertyValueFactory<>("courses"));*/
     }
 
     private void loadAllStudent() {
@@ -229,6 +225,11 @@ public class StudentFormController {
 
         StudentDTO student = new StudentDTO(id, name, phoneNumber, email, address, user);
 
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
+
         try {
             if (studentBo.saveStudent(student)) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Student Added Successfully!").show();
@@ -275,6 +276,11 @@ public class StudentFormController {
         User user = userBo.getUserById(uId);
 
         StudentDTO student = new StudentDTO(id, name, phoneNumber, email, address, user);
+
+        if (!isValied()) {
+            new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();
+            return;
+        }
 
         try {
             if (studentBo.updateStudent(student)) {
@@ -342,4 +348,43 @@ public class StudentFormController {
         }
     }
 
+    public boolean isValied(){
+        if (!Regex.setTextColor(lk.ijse.controller.util.TextField.ID,txtStudentId)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtStudentName)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.util.TextField.ADDRESS,txtStudentAddress)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.util.TextField.EMAIL,txtStudentEmail)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.util.TextField.CONTACT,txtStudentTel)) return false;
+        if (!Regex.setTextColor(lk.ijse.controller.util.TextField.ID,txtUserId)) return false;
+        return true;
+    }
+
+    @FXML
+    void txtStAddOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.ADDRESS,txtStudentAddress);
+    }
+
+    @FXML
+    void txtStEmOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.EMAIL,txtStudentEmail);
+    }
+
+    @FXML
+    void txtStIdOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.ID,txtStudentId);
+    }
+
+    @FXML
+    void txtStNaOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtStudentName);
+    }
+
+    @FXML
+    void txtStTeOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.CONTACT,txtStudentTel);
+    }
+
+    @FXML
+    void txtUIdOnKeyReleased(KeyEvent event) {
+        Regex.setTextColor(lk.ijse.controller.util.TextField.ID,txtUserId);
+    }
 }
