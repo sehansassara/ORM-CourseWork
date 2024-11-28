@@ -21,6 +21,7 @@
                </image>
             </ImageView>
             <JFXButton fx:id="btnReg" layoutX="11.0" layoutY="426.0" onAction="#btnRegistrationOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Registration" />
+            <JFXButton fx:id="btnSetting" layoutX="10.0" layoutY="530.0" onAction="#btnSettingOnAction" prefHeight="40.0" prefWidth="210.0" styleClass="menuButton" text="Setting" />
          </children>
       </AnchorPane>
       <AnchorPane fx:id="anchorMain" layoutX="258.0" layoutY="16.0" prefHeight="648.0" prefWidth="958.0" styleClass="dash2" stylesheets="@../style/css/login.css" />
