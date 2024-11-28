@@ -2,6 +2,7 @@ package lk.ijse.bo.custom;
 
 import lk.ijse.bo.SuperBO;
 import lk.ijse.dto.PaymentDTO;
+import lk.ijse.entity.Payment;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -17,4 +18,8 @@ public interface PaymentBo extends SuperBO {
     List<PaymentDTO> getAllPayments();
 
     boolean updatePayment(PaymentDTO paymentDTO) throws SQLException, IOException, ClassNotFoundException;
+
+    PaymentDTO searchByPaymentId(String id) throws IOException;
+
+    List<Payment> searchByStuIdPay(String id) throws IOException;
 }

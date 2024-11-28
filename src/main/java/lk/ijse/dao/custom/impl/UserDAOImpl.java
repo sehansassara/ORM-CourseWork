@@ -143,4 +143,44 @@ public class UserDAOImpl implements UserDAO {
 
         return user;
     }
+
+    @Override
+    public boolean updatePass(String newPassword, String userName) {
+        Transaction transaction = null;
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            String hql = "UPDATE User u SET u.password = :newPassword WHERE u.user_name = :userName";
+            Query query = session.createQuery(hql);
+            query.setParameter("newPassword", newPassword);
+            query.setParameter("userName", userName);
+
+            int rowsAffected = query.executeUpdate();
+
+            transaction.commit();
+
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    @Override
+    public int getUserCount() {
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Long count = (Long) session.createQuery("SELECT COUNT(u) FROM User u").uniqueResult();
+            return count != null ? count.intValue() : 0;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
+
+
 }

@@ -85,9 +85,26 @@ public class PaymentDAOImpl implements PaymentDAO {
     }
 
     @Override
-    public Payment searchById(String id) throws IOException {
-        return null;
+    public Payment searchById(String studentId) throws IOException {
+        Transaction transaction = null;
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            transaction = session.beginTransaction();
+
+            // HQL query to find a Payment by student ID
+            String hql = "FROM Payment p WHERE p.student.id = :studentId";
+            Payment payment = session.createQuery(hql, Payment.class)
+                    .setParameter("studentId", studentId)
+                    .uniqueResult();
+
+            transaction.commit(); // Commit the transaction
+            return payment; // Return the Payment object or null if not found
+        } catch (Exception e) {
+            if (transaction != null) transaction.rollback(); // Rollback in case of error
+            e.printStackTrace();
+            throw new IOException("Error occurred while searching for Payment by student ID", e);
+        }
     }
+
 
     @Override
     public double getTotalAmount(String stuid) throws IOException {
@@ -102,5 +119,22 @@ public class PaymentDAOImpl implements PaymentDAO {
         Double totalPayment = query.uniqueResult();
 
         return (totalPayment != null) ? totalPayment : 0.0;
+    }
+
+    @Override
+    public List<Payment> searchByStuIdPay(String id) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+
+        // HQL query
+        Query<Payment> query = session.createQuery("FROM Payment p WHERE p.student.id = :studentId", Payment.class);
+        query.setParameter("studentId", id);
+
+        List<Payment> payments = query.getResultList();
+        session.getTransaction().commit();
+        session.close();
+
+        return payments;
     }
 }

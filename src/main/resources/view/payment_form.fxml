@@ -28,13 +28,14 @@
             <String fx:value="saveButton" />
          </styleClass>
       </JFXButton>
-      <TableView fx:id="tblPayment" layoutX="98.0" layoutY="382.0" onMouseClicked="#tblUserOnMouse" prefHeight="238.0" prefWidth="758.0">
+      <TableView fx:id="tblPayment" layoutX="56.0" layoutY="381.0" onMouseClicked="#tblUserOnMouse" prefHeight="238.0" prefWidth="842.0">
          <columns>
             <TableColumn fx:id="colStuId" prefWidth="150.39999389648438" text="Student_ID" />
             <TableColumn fx:id="colAmount" prefWidth="170.40003967285156" text="Amount" />
             <TableColumn fx:id="colPayAmount" minWidth="0.0" prefWidth="141.5999755859375" text="Pay Amount" />
             <TableColumn fx:id="colUpfrontPay" prefWidth="143.20001220703125" text="Upfront Amount" />
-            <TableColumn fx:id="colPayId" prefWidth="152.00006103515625" text="Pay_ID" />
+            <TableColumn fx:id="colPayId" prefWidth="109.5999755859375" text="Pay_ID" />
+            <TableColumn fx:id="colRegId" prefWidth="124.800048828125" text="Pay_ID" />
          </columns>
       </TableView>
       <Label layoutX="657.0" layoutY="20.0" text="Date :">
@@ -85,5 +86,15 @@
             <String fx:value="updateButton" />
          </styleClass>
       </JFXButton>
+      <Label layoutX="659.0" layoutY="94.0" text="Reg ID :">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="lblRegId" layoutX="738.0" layoutY="91.0" text="Label" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="17.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

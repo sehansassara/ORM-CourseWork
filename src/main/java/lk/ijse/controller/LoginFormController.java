@@ -1,5 +1,6 @@
 package lk.ijse.controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -28,6 +29,9 @@ import java.sql.SQLException;
 public class LoginFormController {
 
     @FXML
+    private JFXButton btnSignIn;
+
+    @FXML
     private AnchorPane login1;
 
     @FXML
@@ -46,6 +50,18 @@ public class LoginFormController {
     public void initialize() {
         ObservableList<String> roles = FXCollections.observableArrayList("Admin", "Admissions Coordinator");
         cmbSelectRolle.setItems(roles);
+
+        checkUserCount();
+    }
+
+    private void checkUserCount() {
+        int userCount = userBo.getUserCount();
+
+        if (userCount == 0) {
+            btnSignIn.setDisable(false);
+        } else {
+            btnSignIn.setDisable(true);
+        }
     }
 
 
@@ -149,6 +165,17 @@ public class LoginFormController {
 
     @FXML
     void cmbSelectRolleOnAction(ActionEvent event) {
+    }
+
+    @FXML
+    void hyperOnAction(ActionEvent event) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource("/view/sendOtp_form.fxml"));
+        Scene scene = new Scene(root);
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+        stage.setScene(scene);
+        stage.setTitle("SendOtp");
+        stage.show();
+
     }
 
 }

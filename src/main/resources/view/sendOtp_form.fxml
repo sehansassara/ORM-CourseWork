@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="AnchorpaneForget" prefHeight="460.0" prefWidth="793.0" styleClass="background-pane" stylesheets="@../style/css/send.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lk.ijse.controller.SendOtpFormController">
+   <children>
+      <Label fx:id="lblEmail" layoutX="174.0" layoutY="20.0" styleClass="label-style" stylesheets="@../../../../../finalproject-convert/finalProject-convert/src/main/resources/css/otp.css" text="Froget password and verify it's you">
+         <font>
+            <Font name="System Bold" size="26.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="341.0" fitWidth="443.0" layoutX="24.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../style/image/img.png" />
+         </image>
+      </ImageView>
+      <JFXButton fx:id="btnSendOtp" buttonType="RAISED" layoutX="486.0" layoutY="333.0" onAction="#btnSendOtpOnAction" prefHeight="38.0" prefWidth="180.0" styleClass="send-otp-button" stylesheets="@../../../../../finalproject-convert/finalProject-convert/src/main/resources/css/otp.css" text="send otp">
+         <font>
+            <Font name="System Bold Italic" size="23.0" />
+         </font>
+      </JFXButton>
+      <TextField fx:id="txtUserName" layoutX="467.0" layoutY="172.0" onAction="#txtUserNameOnAction" prefHeight="30.0" prefWidth="218.0" />
+      <TextField fx:id="txtEmail" layoutX="467.0" layoutY="244.0" prefHeight="30.0" prefWidth="218.0" />
+      <Label layoutX="473.0" layoutY="143.0" text="User Name" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="473.0" layoutY="219.0" text="Email" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

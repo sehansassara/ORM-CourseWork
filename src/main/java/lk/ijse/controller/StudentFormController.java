@@ -332,7 +332,7 @@ public class StudentFormController {
 
             if (studentDTO != null) {
                 txtStudentId.setText(studentDTO.getId());
-                txtUserId.setText(String.valueOf(studentDTO.getUser()));
+                txtUserId.setText(String.valueOf(studentDTO.getUser().getUser_id()));
                 txtStudentName.setText(studentDTO.getName());
                 txtStudentEmail.setText(studentDTO.getEmail());
                 txtStudentAddress.setText(studentDTO.getAddress());

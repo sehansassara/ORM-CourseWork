@@ -4,6 +4,7 @@ import lk.ijse.bo.SuperBO;
 import lk.ijse.dto.RegistrationDTO;
 import lk.ijse.dto.StudentDTO;
 import lk.ijse.entity.Program;
+import lk.ijse.entity.Registration;
 import lk.ijse.entity.Student;
 
 import java.io.IOException;
@@ -24,4 +25,8 @@ public interface RegistrationBo extends SuperBO {
     StudentDTO searchByStudentId(String id) throws IOException;
 
     List<RegistrationDTO> getAllStudentCourse();
+
+    Registration getRegById(String regId) throws IOException;
+
+    boolean isStudentRegisteredForProgram(String stuId, String proId) throws IOException;
 }

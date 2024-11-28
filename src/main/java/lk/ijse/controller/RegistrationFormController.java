@@ -217,51 +217,57 @@ public class RegistrationFormController {
         return total;
     }*/
 
-   @FXML
+    @FXML
     void btnSaveOnAction(ActionEvent event) throws IOException {
         String regId = lblRegId.getText();
         String stuId = txtStudentId.getText();
         String proId = lblProgramID.getText();
-        /*double totalFee = calculateTotalFee();*/
         String regDate = lblDate.getText();
         double amount = Double.parseDouble(lblProgramFee.getText());
-
 
         Student student = registrationBo.getStudentById(stuId);
         Program program = registrationBo.getProgramDetailsById(proId);
 
-        RegistrationDTO registrationDTO = new RegistrationDTO (regId, program, student, regDate, amount);
+        boolean isAlreadyRegistered = registrationBo.isStudentRegisteredForProgram(stuId, proId);
+
+        if (isAlreadyRegistered) {
+            new Alert(Alert.AlertType.WARNING, "Student is already registered for this program!").show();
+            return;
+        }
+
+        RegistrationDTO registrationDTO = new RegistrationDTO(regId, program, student, regDate, amount);
 
         try {
             if (registrationBo.saveregisterdStudent(registrationDTO)) {
                 new Alert(Alert.AlertType.CONFIRMATION, "Added Course for student!").show();
-                generateRegId();
+                openPaymentForm(stuId, regId,amount);
                 clearfields();
-
             } else {
                 new Alert(Alert.AlertType.ERROR, "SQL Error").show();
             }
         } catch (SQLException e) {
-
+            e.printStackTrace();
         } catch (IOException e) {
-
+            e.printStackTrace();
         } catch (ClassNotFoundException e) {
-
+            e.printStackTrace();
         }
-
     }
+
 
     @FXML
     void btnPaymentOnAction(ActionEvent event) {
         String stuId = txtStudentId.getText();
-        openPaymentForm(stuId);
+        String regId = lblRegId.getText();
+        double amount = Double.parseDouble(lblProgramFee.getText());
+        openPaymentForm(stuId,regId,amount);
     }
-    private void openPaymentForm(String stuid) {
+    private void openPaymentForm(String stuid,String regId, double amount) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/view/payment_form.fxml"));
             AnchorPane registrationForm = loader.load();
             PaymentFormController paymentFormController = loader.getController();
-            paymentFormController.setRegistrationData(stuid);
+            paymentFormController.setRegistrationData(stuid,regId,amount);
             anchorRegister.getChildren().clear();
             anchorRegister.getChildren().add(registrationForm);
         } catch (IOException e) {

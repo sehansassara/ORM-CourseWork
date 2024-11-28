@@ -1,5 +1,6 @@
 package lk.ijse.dto;
 
+import lk.ijse.entity.Registration;
 import lk.ijse.entity.Student;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,4 +16,5 @@ public class PaymentDTO {
     private double pay_amount;
     private double upfront_amount;
     private Student student;
+    private Registration registration;
 }

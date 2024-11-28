@@ -9,4 +9,6 @@ import java.util.List;
 
 public interface PaymentDAO extends CrudDAO<Payment> {
     double getTotalAmount(String stuid) throws IOException;
+
+    List<Payment> searchByStuIdPay(String id) throws IOException;
 }

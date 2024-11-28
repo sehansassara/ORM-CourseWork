@@ -97,4 +97,22 @@ public class RegistrationBOImpl implements RegistrationBo {
         }
         return registrationDTOS;
     }
+
+    @Override
+    public Registration getRegById(String regId) throws IOException {
+        Registration registration = registrationDAO.getRegById(regId);
+
+        return new Registration(
+                registration.getId(),
+                registration.getStudent(),
+                registration.getProgram(),
+                registration.getRegistrationDate(),
+                registration.getPaymentAmount()
+        );
+    }
+
+    @Override
+    public boolean isStudentRegisteredForProgram(String stuId, String proId) throws IOException {
+        return registrationDAO.isStudentRegisteredForProgram(stuId,proId);
+    }
 }

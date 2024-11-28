@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Point3D?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
@@ -21,21 +22,26 @@
             <Point3D x="10.0" y="10.0" z="10.0" />
          </rotationAxis>
          <children>
-            <TextField fx:id="txtUserName" layoutX="65.0" layoutY="143.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter User Name" styleClass="textFieldLog" stylesheets="@../style/css/login.css" />
-            <TextField fx:id="txtPassword" layoutX="66.0" layoutY="206.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter Password" styleClass="textFieldLog" stylesheets="@../style/css/login.css" />
-            <ComboBox fx:id="cmbSelectRolle" layoutX="66.0" layoutY="67.0" onAction="#cmbSelectRolleOnAction" prefHeight="33.0" prefWidth="206.0" promptText="Select Rolle" />
-            <Label layoutX="57.0" layoutY="116.0" styleClass="labelText" stylesheets="@../style/css/login.css" text="User Name" textFill="WHITE">
+            <TextField fx:id="txtUserName" layoutX="65.0" layoutY="110.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter User Name" styleClass="textFieldLog" stylesheets="@../style/css/login.css" />
+            <TextField fx:id="txtPassword" layoutX="66.0" layoutY="173.0" prefHeight="26.0" prefWidth="206.0" promptText="Enter Password" styleClass="textFieldLog" stylesheets="@../style/css/login.css" />
+            <ComboBox fx:id="cmbSelectRolle" layoutX="66.0" layoutY="34.0" onAction="#cmbSelectRolleOnAction" prefHeight="33.0" prefWidth="206.0" promptText="Select Rolle" />
+            <Label layoutX="57.0" layoutY="83.0" styleClass="labelText" stylesheets="@../style/css/login.css" text="User Name" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <Label layoutX="57.0" layoutY="182.0" styleClass="labelText" stylesheets="@../style/css/login.css" text="Password" textFill="WHITE">
+            <Label layoutX="57.0" layoutY="149.0" styleClass="labelText" stylesheets="@../style/css/login.css" text="Password" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
             <JFXButton buttonType="RAISED" layoutX="65.0" layoutY="274.0" onAction="#btnLoginOnAction" prefHeight="26.0" prefWidth="206.0" styleClass="loginButton" stylesheets="@../style/css/login.css" text="Login" textFill="WHITE" />
-            <JFXButton buttonType="RAISED" layoutX="66.0" layoutY="323.0" onAction="#btnSignInOnAction" prefHeight="26.0" prefWidth="206.0" styleClass="loginButton" stylesheets="@../style/css/login.css" text="SignIn" textFill="WHITE" />
+            <JFXButton fx:id="btnSignIn" buttonType="RAISED" layoutX="66.0" layoutY="323.0" onAction="#btnSignInOnAction" prefHeight="26.0" prefWidth="206.0" styleClass="loginButton" stylesheets="@../style/css/login.css" text="SignIn" textFill="WHITE" />
+            <Hyperlink layoutX="106.0" layoutY="230.0" onAction="#hyperOnAction" text="Froget Password ?">
+               <font>
+                  <Font name="SansSerif Regular" size="13.0" />
+               </font>
+            </Hyperlink>
          </children>
       </AnchorPane>
       <Label layoutX="118.0" layoutY="44.0" prefHeight="74.0" prefWidth="94.0" styleClass="loginText" stylesheets="@../style/css/login.css" text="Login">

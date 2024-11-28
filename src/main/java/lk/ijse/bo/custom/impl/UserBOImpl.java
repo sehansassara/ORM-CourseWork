@@ -80,4 +80,14 @@ public class UserBOImpl implements UserBo {
                 user.getUser_role()
         );
     }
+
+    @Override
+    public boolean updatePass(String newPassword, String userName) {
+        return userDAO.updatePass(newPassword,userName);
+    }
+
+    @Override
+    public int getUserCount() {
+        return userDAO.getUserCount();
+    }
 }

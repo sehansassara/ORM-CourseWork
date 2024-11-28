@@ -25,4 +25,8 @@ public interface UserBo extends SuperBO {
     boolean deleteUser(UserDTO userDTO) throws SQLException, ClassNotFoundException, IOException;
 
     User getUserById(String uId);
+
+    boolean updatePass(String newPassword, String userName);
+
+    int getUserCount();
 }

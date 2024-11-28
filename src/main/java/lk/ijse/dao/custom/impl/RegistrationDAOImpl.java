@@ -157,4 +157,47 @@ public class RegistrationDAOImpl implements RegistrationDAO {
             session.close();
         }
     }
+
+    @Override
+    public Registration getRegById(String regId) throws IOException {
+        Session session = FactoryConfiguration.getInstance().getSession();
+        Transaction transaction = session.beginTransaction();
+
+        try {
+            String hql = "FROM Registration WHERE id = :id";
+
+            Query<Registration> query = session.createQuery(hql, Registration.class);
+            query.setParameter("id", regId);
+
+            Registration registration = query.uniqueResult();
+
+            transaction.commit();
+            return registration;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+    }
+
+    public boolean isStudentRegisteredForProgram(String studentId, String programId) {
+        String hql = "SELECT COUNT(r) FROM Registration r WHERE r.student.id = :studentId AND r.program.id = :programId";
+
+        try (Session session = FactoryConfiguration.getInstance().getSession()) {
+            Query<Long> query = session.createQuery(hql, Long.class);
+            query.setParameter("studentId", studentId);
+            query.setParameter("programId", programId);
+
+            Long count = query.uniqueResult();
+
+            return count != null && count > 0;
+        } catch (HibernateException | IOException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+
+
 }

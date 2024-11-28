@@ -14,4 +14,5 @@ public class PaymentTm {
     private double pay_amount;
     private double upfront_amount;
     private String student_id;
+    private String regId;
 }

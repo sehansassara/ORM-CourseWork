@@ -37,7 +37,7 @@ public class PaymentBOImpl implements PaymentBo {
 
     @Override
     public boolean savePayment(PaymentDTO paymentDTO) throws SQLException, IOException, ClassNotFoundException {
-        return paymentDAO.save(new Payment(paymentDTO.getPay_id(),paymentDTO.getPay_date(),paymentDTO.getBalance_amount(),paymentDTO.getPay_amount(),paymentDTO.getUpfront_amount(),paymentDTO.getStudent()));
+        return paymentDAO.save(new Payment(paymentDTO.getPay_id(),paymentDTO.getPay_date(),paymentDTO.getBalance_amount(),paymentDTO.getPay_amount(),paymentDTO.getUpfront_amount(),paymentDTO.getStudent(),paymentDTO.getRegistration()));
     }
 
     @Override
@@ -54,14 +54,26 @@ public class PaymentBOImpl implements PaymentBo {
             throw new RuntimeException(e);
         }
         for (Payment payment : payments) {
-            paymentDTOS.add(new PaymentDTO(payment.getPay_id(),payment.getPay_date(),payment.getBalance_amount(),payment.getBalance_amount(),payment.getUpfront_amount(),payment.getStudent()));
+            paymentDTOS.add(new PaymentDTO(payment.getPay_id(),payment.getPay_date(),payment.getBalance_amount(),payment.getPay_amount(),payment.getUpfront_amount(),payment.getStudent(),payment.getRegistration()));
         }
         return paymentDTOS;
     }
 
     @Override
     public boolean updatePayment(PaymentDTO paymentDTO) throws SQLException, IOException, ClassNotFoundException {
-        return paymentDAO.update(new Payment(paymentDTO.getPay_id(),paymentDTO.getPay_date(),paymentDTO.getBalance_amount(),paymentDTO.getPay_amount(),paymentDTO.getUpfront_amount(),paymentDTO.getStudent()));
+        return paymentDAO.update(new Payment(paymentDTO.getPay_id(),paymentDTO.getPay_date(),paymentDTO.getBalance_amount(),paymentDTO.getPay_amount(),paymentDTO.getUpfront_amount(),paymentDTO.getStudent(),paymentDTO.getRegistration()));
 
+    }
+
+    @Override
+    public PaymentDTO searchByPaymentId(String id) throws IOException {
+        Payment payment = paymentDAO.searchById(id);
+
+        return new PaymentDTO(payment.getPay_id(),payment.getPay_date(),payment.getBalance_amount(),payment.getPay_amount(),payment.getUpfront_amount(),payment.getStudent(),payment.getRegistration());
+    }
+
+    @Override
+    public List<Payment> searchByStuIdPay(String id) throws IOException {
+        return paymentDAO.searchByStuIdPay(id);
     }
 }

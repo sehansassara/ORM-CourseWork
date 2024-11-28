@@ -14,4 +14,8 @@ public interface RegistrationDAO extends CrudDAO<Registration> {
     Student getUserById(String stuId) throws IOException;
 
     Program getProgramById(String proId) throws IOException;
+
+    Registration getRegById(String regId) throws IOException;
+
+    boolean isStudentRegisteredForProgram(String stuId, String proId) throws IOException;
 }
