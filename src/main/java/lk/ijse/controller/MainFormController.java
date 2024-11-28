@@ -119,6 +119,7 @@ public class MainFormController {
         btnReg.setDisable(false);
         btnStu.setDisable(false);
         btnUser.setDisable(false);
+        btnSetting.setDisable(false);
     }
 
     public void disableAdministratorButtons() {
