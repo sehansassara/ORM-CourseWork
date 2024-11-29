@@ -15,6 +15,8 @@ public interface StudentDAO extends CrudDAO<Student> {
 
     List<Registration> getAllStudentWithCourse() throws IOException;
 
+    boolean deleteAll(String id) throws IOException;
+
 
     /* List<Object[]> getStudentsWithCoursesNative();*/
 }

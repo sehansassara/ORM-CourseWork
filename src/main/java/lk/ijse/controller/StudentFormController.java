@@ -182,7 +182,7 @@ public class StudentFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) {
+    void btnDeleteOnAction(ActionEvent event) throws IOException {
         String id = txtStudentId.getText();
         String name = txtStudentName.getText();
         String phoneNumber = txtStudentTel.getText();
@@ -194,21 +194,13 @@ public class StudentFormController {
 
         StudentDTO student = new StudentDTO(id, name, phoneNumber, email, address, user);
 
-        try {
-            if (studentBo.deleteStudent(student)) {
-                new Alert(Alert.AlertType.CONFIRMATION, "Student deleted Successfully!").show();
-                generateNextStudentId();
-                clearFields();
-                loadAllStudent();
-            } else {
-                new Alert(Alert.AlertType.ERROR, "SQL Error").show();
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        } catch (ClassNotFoundException e) {
-            throw new RuntimeException(e);
+        if (studentBo.deleteStudentAll(id)) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Student deleted Successfully!").show();
+            generateNextStudentId();
+            clearFields();
+            loadAllStudent();
+        } else {
+            new Alert(Alert.AlertType.ERROR, "SQL Error").show();
         }
     }
 

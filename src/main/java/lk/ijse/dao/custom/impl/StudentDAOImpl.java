@@ -137,7 +137,6 @@ public class StudentDAOImpl implements StudentDAO {
 
             Query<Student> query = session.createNativeQuery(hql, Student.class);
             students = query.getResultList();
-            // Debugging output
             System.out.println("Number of students retrieved: " + students.size());
 
             transaction.commit();
@@ -185,6 +184,45 @@ public class StudentDAOImpl implements StudentDAO {
         session.close();
         return registrations;
     }
+
+    @Override
+    public boolean deleteAll(String id) throws IOException {
+        Session session = null;
+        Transaction transaction = null;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            Student student = session.get(Student.class, id);
+            if (student != null) {
+                if (student.getRegistrations() != null) {
+                    student.getRegistrations().clear();
+                }
+
+                if (student.getPayments() != null) {
+                    student.getPayments().clear();
+                }
+
+                session.delete(student);
+            } else {
+                return false;
+            }
+
+
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new IOException("Failed to delete student with ID: " + id, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
 
 
 }

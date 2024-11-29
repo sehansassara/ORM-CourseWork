@@ -132,7 +132,7 @@ public class ProgramFormController {
         double fee = Double.parseDouble(txtFee.getText());
 
         ProgramDTO programDTO = new ProgramDTO(id, programName, duration, fee);
-        if (programBo.deleteProgram(programDTO)) {
+        if (programBo.deleteProgramAll(id)) {
             new Alert(Alert.AlertType.CONFIRMATION, "Program Deleted Successfully!").show();
             generateNextProgramId();
             clearFields();
@@ -225,7 +225,7 @@ public class ProgramFormController {
 
     @FXML
     void txtProDuOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtDuration);
+        Regex.setTextColor(lk.ijse.controller.util.TextField.ADDRESS,txtDuration);
     }
 
     @FXML
@@ -235,6 +235,6 @@ public class ProgramFormController {
 
     @FXML
     void txtProNaOnKeyReleased(KeyEvent event) {
-        Regex.setTextColor(lk.ijse.controller.util.TextField.NAME,txtProgramName);
+        Regex.setTextColor(lk.ijse.controller.util.TextField.ADDRESS,txtProgramName);
     }
 }

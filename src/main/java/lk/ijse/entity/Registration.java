@@ -17,11 +17,11 @@ public class Registration {
     private String id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "program_id")
+    @JoinColumn(name = "program_id", nullable = false)
     private Program program;
 
     private String registrationDate;

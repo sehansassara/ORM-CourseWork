@@ -8,4 +8,6 @@ import java.io.IOException;
 
 public interface ProgramDAO extends CrudDAO<Program> {
     ProgramDTO getProgramDetailsByName(String selectedProgramId) throws IOException;
+
+    boolean deleteAll(String id) throws IOException;
 }

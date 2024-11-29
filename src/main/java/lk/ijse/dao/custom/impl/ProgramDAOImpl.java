@@ -4,6 +4,7 @@ import lk.ijse.comfit.FactoryConfiguration;
 import lk.ijse.dao.custom.ProgramDAO;
 import lk.ijse.dto.ProgramDTO;
 import lk.ijse.entity.Program;
+import lk.ijse.entity.Registration;
 import lk.ijse.entity.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -128,4 +129,45 @@ public class ProgramDAOImpl implements ProgramDAO {
             return null;
         }
     }
+
+    @Override
+    public boolean deleteAll(String programId) throws IOException {
+        Session session = null;
+        Transaction transaction = null;
+
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            Program program = session.get(Program.class, programId);
+            if (program == null) {
+                return false;
+            }
+
+            for (Registration registration : program.getRegistrations()) {
+                registration.setProgram(null);
+                registration.setStudent(null);
+
+                session.delete(registration);
+            }
+
+            program.getRegistrations().clear();
+
+            session.delete(program);
+
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new IOException("Failed to delete program with ID: " + programId, e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
+    }
+
+
 }

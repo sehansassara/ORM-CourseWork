@@ -57,13 +57,33 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public boolean delete(User batchDTO) throws SQLException, ClassNotFoundException, IOException {
-        Session session = FactoryConfiguration.getInstance().getSession();
-        Transaction transaction = session.beginTransaction();
+        Session session = null;
+        Transaction transaction = null;
 
-        session.delete(batchDTO);
-        transaction.commit();
-        session.close();
-        return true;
+        try {
+            session = FactoryConfiguration.getInstance().getSession();
+            transaction = session.beginTransaction();
+
+            String id = "U000";
+            String hql = "UPDATE Student SET user = id WHERE user.id = :userId";
+            Query query = session.createQuery(hql);
+            query.setParameter("userId", batchDTO.getUser_id());
+            query.executeUpdate();
+
+            session.delete(batchDTO);
+
+            transaction.commit();
+            return true;
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            throw new IOException("Failed to delete user", e);
+        } finally {
+            if (session != null) {
+                session.close();
+            }
+        }
     }
 
     @Override

@@ -26,6 +26,8 @@ public interface StudentBo extends SuperBO {
 
     Student getStudentById(String stuId);
 
+    boolean deleteStudentAll(String id) throws IOException;
+
 
 
     /*List<StudentDTO> getStudentsWithCourses();*/

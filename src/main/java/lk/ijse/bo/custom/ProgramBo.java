@@ -23,4 +23,5 @@ public interface ProgramBo extends SuperBO {
 
     ProgramDTO getProgramDetailsByName(String selectedProgramId) throws IOException;
 
+    boolean deleteProgramAll(String id) throws IOException;
 }

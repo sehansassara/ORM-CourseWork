@@ -42,6 +42,11 @@ public class ProgramBOImpl implements ProgramBo {
     }
 
     @Override
+    public boolean deleteProgramAll(String id) throws IOException {
+        return programDAO.deleteAll(id);
+    }
+
+    @Override
     public String generateProgramId() throws SQLException, IOException, ClassNotFoundException {
         return programDAO.generateId();
     }

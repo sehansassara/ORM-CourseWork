@@ -58,7 +58,7 @@ public class StudentBOImpl implements StudentBo {
 
     @Override
     public boolean updateStudent(StudentDTO studentDTO) throws SQLException, IOException, ClassNotFoundException {
-        return studentDAO.update(new Student(studentDTO.getId(),studentDTO.getUser(),studentDTO.getName(),studentDTO.getPhoneNumber(),studentDTO.getEmail(),studentDTO.getAddress()));
+        return studentDAO.update(new Student(studentDTO.getId(),studentDTO.getUser(),studentDTO.getName(),studentDTO.getEmail(),studentDTO.getPhoneNumber(),studentDTO.getAddress()));
     }
 
     @Override
@@ -81,7 +81,6 @@ public class StudentBOImpl implements StudentBo {
         try {
             students = studentDAO.getStudentsRegisteredForAllCulinaryPrograms();
 
-            // Debugging output
             System.out.println("Number of DTOs to convert: " + students.size());
 
             for (Student student : students) {
@@ -109,6 +108,10 @@ public class StudentBOImpl implements StudentBo {
         );
     }
 
+    @Override
+    public boolean deleteStudentAll(String id) throws IOException {
+        return studentDAO.deleteAll(id);
+    }
 
 
 }
