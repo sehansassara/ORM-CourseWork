@@ -123,7 +123,7 @@ public class ProgramFormController {
     }
 
     @FXML
-    void btnDeleteOnAction(ActionEvent event) throws SQLException, IOException, ClassNotFoundException {
+    void btnDeleteOnAction(ActionEvent event) {
         if (!validateFields()) return;
 
         String id = txtProgramId.getText();
@@ -132,13 +132,21 @@ public class ProgramFormController {
         double fee = Double.parseDouble(txtFee.getText());
 
         ProgramDTO programDTO = new ProgramDTO(id, programName, duration, fee);
-        if (programBo.deleteProgramAll(id)) {
-            new Alert(Alert.AlertType.CONFIRMATION, "Program Deleted Successfully!").show();
-            generateNextProgramId();
-            clearFields();
-            loadAllPrograms();
-        } else {
-            new Alert(Alert.AlertType.ERROR, "SQL Error").show();
+        try {
+            if (programBo.deleteProgramAll(id)) {
+                new Alert(Alert.AlertType.CONFIRMATION, "Program Deleted Successfully!").show();
+                generateNextProgramId();
+                clearFields();
+                loadAllPrograms();
+            } else {
+                new Alert(Alert.AlertType.ERROR, "SQL Error").show();
+            }
+        } catch (IOException e) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Can not delete this it is foreign key").show();
+        } catch (SQLException e) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Can not delete this it is foreign key").show();
+        } catch (ClassNotFoundException e) {
+            new Alert(Alert.AlertType.CONFIRMATION, "Can not delete this it is foreign key").show();
         }
     }
 
