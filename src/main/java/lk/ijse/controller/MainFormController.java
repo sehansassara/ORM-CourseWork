@@ -124,7 +124,7 @@ public class MainFormController {
 
     public void disableAdministratorButtons() {
         btnDash.setDisable(false);
-        btnPay.setDisable(false);
+        btnPay.setDisable(true);
         btnPro.setDisable(false);
         btnReg.setDisable(false);
         btnStu.setDisable(false);
