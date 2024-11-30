@@ -310,7 +310,7 @@ public class PaymentFormController {
         Student student = studentBo.getStudentById(stuId);
         Registration registration = registrationBo.getRegById(regId);
 
-        PaymentDTO paymentDTO = new PaymentDTO(payid, date,  netPayAmount, totalAmount, upFrontPay1, student, registration);
+        PaymentDTO paymentDTO = new PaymentDTO(payid, date,  totalAmount,netPayAmount,  upFrontPay1, student, registration);
 
         if (!isValied()) {
             new Alert(Alert.AlertType.ERROR, "Please check all fields.").show();

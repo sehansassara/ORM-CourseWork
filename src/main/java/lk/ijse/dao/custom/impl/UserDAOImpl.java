@@ -65,7 +65,7 @@ public class UserDAOImpl implements UserDAO {
             transaction = session.beginTransaction();
 
             String id = "U000";
-            String hql = "UPDATE Student SET user = id WHERE user.id = :userId";
+            String hql = "UPDATE Student SET user = null WHERE user.id = :userId";
             Query query = session.createQuery(hql);
             query.setParameter("userId", batchDTO.getUser_id());
             query.executeUpdate();
